@@ -1,4 +1,3 @@
-import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
 import {AiFillCloseCircle} from 'react-icons/ai'
 
 import CartContext from '../../context/CartContext'
@@ -17,7 +16,7 @@ const CartItem = props => (
       const {
         dishId,
         dishName,
-        dishImageUrl,
+        dishImage,
         dishPrice,
         cartCount,
       } = cartItemDetails
@@ -33,11 +32,7 @@ const CartItem = props => (
 
       return (
         <li className="cart-item" key={dishId}>
-          <img
-            className="cart-product-image"
-            src={dishImageUrl}
-            alt={dishName}
-          />
+          <img className="cart-product-image" src={dishImage} alt={dishName} />
           <div className="cart-item-details-container">
             <div className="cart-product-title-brand-container">
               <p className="cart-product-title">{dishName}</p>
@@ -49,7 +44,7 @@ const CartItem = props => (
                 data-testid="minus"
                 onClick={onClickDecrement}
               >
-                <BsDashSquare color="#52606D" size={12} />
+                -
               </button>
               <p className="cart-quantity">{cartCount.dishId}</p>
               <button
@@ -58,7 +53,7 @@ const CartItem = props => (
                 data-testid="plus"
                 onClick={onClickIncrement}
               >
-                <BsPlusSquare color="#52606D" size={12} />
+                +
               </button>
             </div>
             <div className="total-price-remove-container">
