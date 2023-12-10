@@ -46,7 +46,7 @@ const CartItem = props => (
               >
                 -
               </button>
-              <p className="cart-quantity">{cartCount.dishId}</p>
+              <p className="cart-quantity">{cartCount[dishId]}</p>
               <button
                 type="button"
                 className="quantity-controller-button"
@@ -58,7 +58,7 @@ const CartItem = props => (
             </div>
             <div className="total-price-remove-container">
               <p className="cart-total-price">
-                Rs {dishPrice * cartCount.dishId}/-
+                Rs {dishPrice * cartCount[dishId]}/-
               </p>
               <button
                 className="remove-button"

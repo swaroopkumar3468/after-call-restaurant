@@ -8,7 +8,9 @@ const CartSummary = () => (
       const {cartList} = value
       let total = 0
       cartList.forEach(eachCartItem => {
-        total += eachCartItem.dishPrice * eachCartItem.cartCount.dishId
+        total +=
+          eachCartItem.dishPrice * eachCartItem.cartCount[eachCartItem.dishId]
+        console.log(cartList)
       })
 
       return (

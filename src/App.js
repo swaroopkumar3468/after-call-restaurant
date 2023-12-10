@@ -12,7 +12,34 @@ class App extends Component {
   state = {cartList: []}
 
   addCartItem = product => {
-    this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+    const {cartList} = this.state
+    const productObject = cartList.find(
+      eachCartItem => eachCartItem.dishId === product.dishId,
+    )
+
+    if (productObject) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(eachCartItem => {
+          if (productObject.dishId === eachCartItem.dishId) {
+            const updatedQuantity =
+              eachCartItem.cartCount[product.dishId] +
+              product.cartCount[product.dishId]
+            return {
+              ...eachCartItem,
+              cartCount: {
+                ...eachCartItem.cartCount,
+                [product.dishId]: updatedQuantity,
+              },
+            }
+          }
+          return eachCartItem
+        }),
+      }))
+    } else {
+      const updatedCartList = [...cartList, product]
+      this.setState({cartList: updatedCartList})
+    }
+
     console.log(product)
   }
 
@@ -24,8 +51,15 @@ class App extends Component {
     this.setState(prevState => ({
       cartList: prevState.cartList.map(eachCartItem => {
         if (dishId === eachCartItem.dishId) {
-          const updatedQuantity = eachCartItem.cartCount.dishId + 1
-          return {...eachCartItem, quantity: updatedQuantity}
+          const updatedQuantity =
+            eachCartItem.cartCount[eachCartItem.dishId] + 1
+          return {
+            ...eachCartItem,
+            cartCount: {
+              ...eachCartItem.cartCount,
+              [eachCartItem.dishId]: updatedQuantity,
+            },
+          }
         }
         return eachCartItem
       }),
@@ -37,12 +71,15 @@ class App extends Component {
     const productObject = cartList.find(
       eachCartItem => eachCartItem.dishId === dishId,
     )
-    if (productObject.cartCount.dishId > 1) {
+    if (productObject.cartCount[dishId] > 1) {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(eachCartItem => {
           if (dishId === eachCartItem.dishId) {
-            const updatedQuantity = eachCartItem.cartCount.dishId - 1
-            return {...eachCartItem, cartCount: updatedQuantity}
+            const updatedQuantity = eachCartItem.cartCount[dishId] - 1
+            return {
+              ...eachCartItem,
+              cartCount: {...eachCartItem.cartCount, [dishId]: updatedQuantity},
+            }
           }
           return eachCartItem
         }),

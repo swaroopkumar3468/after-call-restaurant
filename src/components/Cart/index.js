@@ -15,10 +15,11 @@ const Cart = () => (
       const onClickRemoveAllBtn = () => {
         removeAllCartItems()
       }
+      const restaurantName = 'UNI Resto Cafe'
 
       return (
         <>
-          <Header />
+          <Header restaurantName={restaurantName} />
           <div className="cart-container">
             {showEmptyView ? (
               <EmptyCartView />

@@ -165,7 +165,7 @@ class Home extends Component {
                         )}
 
                       {activeCategory === 'Salads and Soup' &&
-                        dish.dish_Availability && (
+                        dish.addonCat.length > 0 && (
                           <div>
                             {cartCount[dish.dish_id] > 0 && (
                               <button
@@ -203,7 +203,7 @@ class Home extends Component {
                         )}
 
                       {activeCategory === 'From The Barnyard' &&
-                        dish.dish_Availability && (
+                        dish.addonCat.length > 0 && (
                           <div>
                             {cartCount[dish.dish_id] > 0 && (
                               <button
@@ -240,7 +240,7 @@ class Home extends Component {
                           <p className="not-available">Not available</p>
                         )}
                       {activeCategory === 'From the Hen House' &&
-                        dish.dish_Availability && (
+                        dish.addonCat.length > 0 && (
                           <div>
                             {cartCount[dish.dish_id] > 0 && (
                               <button
@@ -277,7 +277,7 @@ class Home extends Component {
                           <p className="not-available">Not available</p>
                         )}
                       {activeCategory === 'Fresh From The Sea' &&
-                        dish.dish_Availability && (
+                        dish.addonCat.length > 0 && (
                           <div>
                             {cartCount[dish.dish_id] > 0 && (
                               <button

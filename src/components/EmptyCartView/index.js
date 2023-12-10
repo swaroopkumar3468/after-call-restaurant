@@ -8,7 +8,6 @@ const EmptyCartView = () => (
       className="cart-empty-img"
       alt="cart empty"
     />
-    <h1 className="cart-empty-heading">Your Cart Is Empty</h1>
   </div>
 )
 
